@@ -1,27 +1,40 @@
-# ProjetoTrucoAngular
+# Truco dos Guri 🎴
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.10.
+![Projeto Truco Angular](https://github.com/user-attachments/assets/d7949f8c-98f0-4de3-b77c-6dd21a39aa1b)
 
-## Development server
+Bem-vindo ao projeto **Truco dos Guri**! Este é um jogo de truco online desenvolvido com Angular 18, Bootstrap 5 e Angular Material. O sistema de pontuação é dinâmico, permitindo que cada equipe marque pontos de 1 a 12. Quando uma equipe atinge 12 pontos, o jogo é finalizado automaticamente com uma tela de vitória.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Tecnologias Utilizadas
+- **[Angular 18.2.10](https://angular.io/docs)**
+- **[Bootstrap 5.3.3 ](https://getbootstrap.com/docs/5.3/)**
+- **[Angular Material 18.2.10](https://material.angular.io/)**
 
-## Code scaffolding
+---
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+<!--## 🌐 Acesse o Projeto Online
+[**Link para o Deploy do Truco dos Guri**](https://link-do-deploy.com)
+-->
+---
 
-## Build
+## 📌 Funcionalidades Principais
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Pontuação dinâmica:** Cada equipe pode marcar de 1 a 12 pontos separadamente.
+- **Finalização automática:** Quando uma equipe alcança 12 pontos, o jogo termina e uma tela de parabéns aparece.
+- **Interface elegante:** Interface moderna e responsiva com um fundo preto e botões cinza, proporcionando uma experiência visual imersiva.
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 🛠️ Instruções de Uso
 
-## Running end-to-end tests
+### Servidor de Desenvolvimento
+1. Clone o repositório.
+2. Execute `ng serve` para iniciar o servidor de desenvolvimento.
+3. Acesse `http://localhost:4200/` no navegador.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+O aplicativo recarrega automaticamente ao detectar mudanças nos arquivos de origem.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+<!--### Geração de Componentes
+Para adicionar novos componentes, use:
+```bash
+ng generate component nome-do-componente
+-->
