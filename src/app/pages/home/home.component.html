@@ -1,1 +1,22 @@
-<p>home works!</p>
+<div class="container-fluid p-2">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 text-center pb-2">
+      <h1 class="text-center">Truco dos Guris</h1>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-8 text-center pb-2">
+      <div class="card-times p-2 d-flex justify-content-center gap-5">
+        <div class="d-flex flex-column text-center m-2">
+          <h2 (click)="activateEditMode('A')" *ngIf="!editModeA">{{ teamAName }}</h2>
+          <input  *ngIf="editModeA" [(ngModel)]="teamAName" (blur)="editModeA = false" (keyup)="onKeyUp($event, 'A')" #inputA/>
+          <span>pontos</span>
+        </div>
+        <div  class="d-flex flex-column text-center m-2">
+          <h2 (click)="activateEditMode('B')" *ngIf="!editModeB">{{ teamBName }}</h2>
+          <input *ngIf="editModeB" [(ngModel)]="teamBName" (blur)="editModeB = false" (keyup)="onKeyUp($event, 'B')" #inputB/>
+          <span>pontos</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
