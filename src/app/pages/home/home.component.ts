@@ -1,51 +1,77 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ModalVictoryComponent } from '../modal-victory/modal-victory.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [FormsModule, CommonModule,],
+  imports: [FormsModule, CommonModule, ModalVictoryComponent, MatIconModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
   teamAName: string = 'Time A';
   teamBName: string = 'Time B';
-  editModeA: boolean = false;
-  editModeB: boolean = false;
+  editTeamA: boolean = false;
+  editTeamB: boolean = false;
 
-  onKeyUp(event: KeyboardEvent, team: string):void{
-    if(event.key === 'Escape' || event.key === 'Enter'){
-      if (team === 'A'){
-        this.editModeA = false;
-      } else if(team === 'B') {
-        this.editModeB = false;
+  teamAPoints: number = 0;
+  teamBPoints: number = 0;
+
+  winningTeam: string | null = null;
+
+  pointsArray = Array.from({ length: 12 }, (_, i) => i + 1);
+
+  @ViewChild('teamAInput') teamAInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('teamBInput') teamBInput!: ElementRef<HTMLInputElement>;
+
+  ngAfterViewChecked() {
+    if (this.editTeamA && this.teamAInput) {
+      this.teamAInput.nativeElement.focus();
+    }
+    if (this.editTeamB && this.teamBInput) {
+      this.teamBInput.nativeElement.focus();
+    }
+  }
+
+  onKeyUp(event: KeyboardEvent, team: string): void {
+    if (event.key === 'Escape' || event.key === 'Enter') {
+      if (team === 'A') {
+        this.editTeamA = false;
+      } else if (team === 'B') {
+        this.editTeamB = false;
       }
     }
   }
 
-  activateEditMode(team: string): void {
-    if (team === 'A') {
-      this.editModeA = true;
-      setTimeout(() => {
-        const inputA = document.getElementById('inputA') as HTMLInputElement;
-        if (inputA) {
-          inputA.focus();
-          inputA.select();
-        }
-      }, 0);
-    } else if (team === 'B') {
-      this.editModeB = true;
-      setTimeout(() => {
-        const inputB = document.getElementById('inputB') as HTMLInputElement;
-        if (inputB) {
-          inputB.focus();
-          inputB.select();
-        }
-      }, 0);
+  checkWin() {
+    if (this.teamAPoints === 12) {
+      this.winningTeam = this.teamAName;
+    } else if (this.teamBPoints === 12) {
+      this.winningTeam = this.teamBName;
     }
   }
 
+  setTeamAPoints(points: number) {
+    this.teamAPoints = points;
+    this.checkWin();
+  }
+
+  setTeamBPoints(points: number) {
+    this.teamBPoints = points;
+    this.checkWin();
+  }
+
+  restartGame() {
+    this.teamAPoints = 0;
+    this.teamBPoints = 0;
+    this.winningTeam = null;
+  }
+
+  onModalClose() {
+    this.restartGame(); 
+  }
 }
