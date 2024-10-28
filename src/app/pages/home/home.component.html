@@ -1,22 +1,90 @@
-<div class="container-fluid p-2">
+
+<div class="container-fluid ">
   <div class="row justify-content-center">
-    <div class="col-12 col-md-8 text-center pb-2">
-      <h1 class="text-center">Truco dos Guris</h1>
+    <div class="col-12 col-lg-12 col-md-12 text-center pb-2">
+      <h1 class="text-center w-100">Truco dos Guris</h1>
     </div>
 
-    <div class="col-12 col-md-6 col-lg-8 text-center pb-2">
+    <div class="col-12 col-md-8 col-sm-8 col-lg-8 text-center p-2">
       <div class="card-times p-2 d-flex justify-content-center gap-5">
-        <div class="d-flex flex-column text-center m-2">
-          <h2 (click)="activateEditMode('A')" *ngIf="!editModeA">{{ teamAName }}</h2>
-          <input  *ngIf="editModeA" [(ngModel)]="teamAName" (blur)="editModeA = false" (keyup)="onKeyUp($event, 'A')" #inputA/>
-          <span>pontos</span>
+        <div class="d-flex flex-column text-center m-2" (click)="editTeamA = true">
+          <ng-container *ngIf="editTeamA; else viewModeA">
+            <input class="form-control" #teamAInput [(ngModel)]="teamAName" (blur)="editTeamA = false" (keyup)="onKeyUp($event, 'A')" />
+          </ng-container>
+          <ng-template #viewModeA>
+            <h2>{{ teamAName }}<mat-icon class="mat-18">edit</mat-icon></h2>
+          </ng-template>
+          <span>{{teamAPoints}} pontos</span>
         </div>
-        <div  class="d-flex flex-column text-center m-2">
-          <h2 (click)="activateEditMode('B')" *ngIf="!editModeB">{{ teamBName }}</h2>
-          <input *ngIf="editModeB" [(ngModel)]="teamBName" (blur)="editModeB = false" (keyup)="onKeyUp($event, 'B')" #inputB/>
-          <span>pontos</span>
+
+        <div class="d-flex flex-column text-center m-2" (click)="editTeamB = true">
+          <ng-container *ngIf="editTeamB; else viewModeB">
+            <input class="form-control" #teamBInput [(ngModel)]="teamBName" (blur)="editTeamB = false" (keyup)="onKeyUp($event, 'B')"/>
+          </ng-container>
+          <ng-template #viewModeB>
+            <h2>{{ teamBName }}<mat-icon class="mat-18">edit</mat-icon></h2>
+          </ng-template>
+          <span>{{teamBPoints}} pontos</span>
+        </div>
+    </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-sm-12 col-lg-8">
+      <div class="p-2 d-flex justify-content-center gap-5" style="gap: 20px;">
+        <!-- Pontuação para o Time A -->
+        <div class="d-flex flex-column text-center m-2">
+          <ng-container *ngFor="let point of pointsArray">
+            <div class="radio-group">
+              <input
+              class="radioPoint p-2"
+              type="radio"
+              [value]="point"
+              [checked]="teamAPoints === point"
+              (change)="setTeamAPoints(point)"
+              [id]="'teamA' + point"
+              name="pointsTeamA"
+            />
+            <label [for]="'teamA' + point">{{ point }}</label>
+            </div>
+          </ng-container>
+        </div>
+
+        <!-- Pontuação para o Time B -->
+        <div class="d-flex flex-column text-center m-2">
+          <ng-container *ngFor="let point of pointsArray">
+            <div class="radio-group">
+              <input
+              class="radioPoint"
+              type="radio"
+              [value]="point"
+              [checked]="teamBPoints === point"
+              (change)="setTeamBPoints(point)"
+              [id]="'teamB' + point"
+              name="pointsTeamB"
+            />
+            <label [for]="'teamB' + point">{{ point }}</label>
+            </div>
+          </ng-container>
         </div>
       </div>
+
+      <div class=" text-center p-2">
+        <div class=" justify-content-center">
+          <div class="card-Restart  align-items-center justify-content-center m-2" (click)="restartGame()">
+            <h2 class="text-center mb-0">Recomeçar</h2>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tela de Parabéns -->
+
+      <app-modal-victory
+      [winningTeam]="winningTeam"
+      *ngIf="winningTeam"
+      (modalClosed)="onModalClose()">
+      </app-modal-victory>
     </div>
+
   </div>
 </div>
+

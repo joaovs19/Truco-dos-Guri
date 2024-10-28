@@ -1,0 +1,37 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.btn{
+  background-color: #686868;
+  font-size: 18px;
+  color: #000000;
+}
+
+button:focus{
+  outline: none;
+  box-shadow: none;
+  border: 0 none;
+}
+
+
+.modal-content {
+  background-color: #A2A2A2;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  width: 80vw;
+  height: 80vw;
+  max-height: 20vh;
+  max-width: 80vh;
+}
