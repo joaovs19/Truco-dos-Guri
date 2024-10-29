@@ -11,9 +11,9 @@ Bem-vindo ao projeto **Truco dos Guri**! Este é um jogo de truco online desenvo
 
 ---
 
-<!--## 🌐 Acesse o Projeto Online
-[**Link para o Deploy do Truco dos Guri**](https://link-do-deploy.com)
--->
+## 🌐 Acesse o Projeto Online
+**Link para o Deploy do Truco dos Guri** https://truco-dos-guri.vercel.app/
+
 ---
 
 ## 📌 Funcionalidades Principais
